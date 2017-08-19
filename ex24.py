@@ -9,29 +9,29 @@ poem = """
 9 and requires an explanation
 10 \n\t\twhere there is none.
 11 """
-12
-13 print "- - - - - - - - - - - - - - "
-14 print poem
-15 print "- - - - - - - - - - - - - - "
-16
-17
-18 five = 10 - 2 + 3 - 6
-19 print "This should be five: %s" % five
-20
-21 def secret_formula(started):
-22 jelly_beans = started * 500
-23 jars = jelly_beans / 1000
-24 crates = jars / 100
-25 return jelly_beans, jars, crates
-26
-27
-28 start_point = 10000
-29 beans, jars, crates = secret_formula(start_point)
-30
-31 print "With a starting point of: %d" % start_point
-32 print "We'd have %d beans, %d jars, and %d crates." % (beans, jars, crates)
-33
-34 start_point = start_point / 10
-35
-36 print "We can also do that this way:"
-37 print "We'd have %d beans, %d jars, and %d crates." % secret_formula(start_point)
+
+print "- - - - - - - - - - - - - - "
+print poem
+print "- - - - - - - - - - - - - - "
+
+
+five = 10 - 2 + 3 - 6
+print "This should be five: %s" % five
+
+def secret_formula(started):
+    jelly_beans = started * 500
+    jars = jelly_beans / 1000
+    crates = jars / 100
+    return jelly_beans, jars, crates
+
+
+start_point = 10000
+beans, jars, crates = secret_formula(start_point)
+
+print "With a starting point of: %d" % start_point
+print "We'd have %d beans, %d jars, and %d crates." % (beans, jars, crates)
+
+start_point = start_point / 10
+
+print "We can also do that this way:"
+print "We'd have %d beans, %d jars, and %d crates." % secret_formula(start_point)
