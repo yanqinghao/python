@@ -14,6 +14,8 @@ from sklearn.metrics import accuracy_score
 from plot_decision_regions import plot_decision_regions
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.linear_model import SGDClassifier
 
 iris = datasets.load_iris()
 X = iris.data[:, [2, 3]]
@@ -43,6 +45,49 @@ plt.show()
 lr = LogisticRegression(C=1000.0, random_state=0)
 lr.fit(X_train_std, y_train)
 plot_decision_regions(X_combined_std,y_combined, classifier=lr,test_idx=range(105,150))
+plt.xlabel('petal length [standardized]')
+plt.ylabel('petal width [standardized]')
+plt.legend(loc='upper left')
+plt.show()
+
+weights, params = [], []
+for c in np.arange(-5, 5):
+    lr = LogisticRegression(C=10**int(c), random_state=0)
+    lr.fit(X_train_std, y_train)
+    weights.append(lr.coef_[1])
+    params.append(10**int(c))
+weights = np.array(weights)
+plt.plot(params, weights[:, 0],label='petal length')
+plt.plot(params, weights[:, 1], linestyle='--',label='petal width')
+plt.ylabel('weight coefficient')
+plt.xlabel('C')
+plt.legend(loc='upper left')
+plt.xscale('log')
+plt.show()
+
+svm = SVC(kernel='linear', C=1.0, random_state=0)
+svm.fit(X_train_std, y_train)
+plot_decision_regions(X_combined_std,y_combined, classifier=svm,test_idx=range(105,150))
+plt.xlabel('petal length [standardized]')
+plt.ylabel('petal width [standardized]')
+plt.legend(loc='upper left')
+plt.show()
+
+ppn = SGDClassifier(loss='perceptron')
+lr = SGDClassifier(loss='log')
+svm = SGDClassifier(loss='hinge')
+
+svm = SVC(kernel='rbf', random_state=0, gamma=0.2, C=1.0)
+svm.fit(X_train_std, y_train)
+plot_decision_regions(X_combined_std,y_combined, classifier=svm,test_idx=range(105,150))
+plt.xlabel('petal length [standardized]')
+plt.ylabel('petal width [standardized]')
+plt.legend(loc='upper left')
+plt.show()
+
+svm = SVC(kernel='rbf', random_state=0, gamma=100, C=1.0)
+svm.fit(X_train_std, y_train)
+plot_decision_regions(X_combined_std,y_combined, classifier=svm,test_idx=range(105,150))
 plt.xlabel('petal length [standardized]')
 plt.ylabel('petal width [standardized]')
 plt.legend(loc='upper left')
