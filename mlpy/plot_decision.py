@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import Perceptron as pt
 
-df = pd.read_csv('E:/PyWorkSpace/spyder/iris/iris.txt',header = None)
+df = pd.read_csv('iris/iris.txt',header = None)
 df.tail
 y = df.iloc[0:100, 4].values
 y = np.where(y == 'Iris-setosa', -1, 1)
